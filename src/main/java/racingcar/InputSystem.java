@@ -9,7 +9,7 @@ public class InputSystem {
 
     public List<String> getNameInput() {
         System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
-        return validateName(Console.readLine());
+        return makeName(Console.readLine());
     }
 
     public int getNumberInput() {
@@ -36,10 +36,8 @@ public class InputSystem {
         }
     }
 
-    private List<String> validateName(String name) {
-        if (Stream.of(name.split(",")).anyMatch(e -> e.length() > 5)) {
-            throw new IllegalArgumentException("이름을 5자 이하로 입력해주세요");
-        }
+    private List<String> makeName(String name) {
+
         return List.of(name.split(","));
     }
 
