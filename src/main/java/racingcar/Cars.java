@@ -10,6 +10,7 @@ public class Cars {
 
     public Cars(List<String> names) {
         this.names = names;
+        validateSameName();
 
     }
 
@@ -25,6 +26,12 @@ public class Cars {
 
     private int findBestScore() {
         return getCars().stream().mapToInt(Car::getForward).max().orElseThrow();
+    }
+
+    private void validateSameName(){
+        if (names.size() != names.stream().distinct().count()){
+            throw new IllegalArgumentException("중복 된 이름은 안됩니다.");
+        }
     }
 
     public List<Car> findWinners() {
